@@ -1,0 +1,17 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+set -x
+
+#------------------------------- nanoFluid4Foam project -------------------------------#
+#Author
+    #Ehsan Golab, SUT. All rights reserved.
+    #Ehsan1996Golab@gmail.com
+
+#--------------------------------------------------------------------------------------#
+
+wmake libso src4NF
+wmake libso src4NF/radiation4NF
+applications4NF/Allwmake
+src4NF/postProcessing4NF/Allwmake
+
+# ----------------------------------------------------------------- end-of-file
