@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.1                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      alpha_NEPCMTwo;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions		[0 0 0 0 0 0 0];
+
+internalField		uniform 0.01;
+
+boundaryField
+{
+    ".*"
+    {
+	type		BuongiornoBC4NF;
+        name            NEPCMTwo;
+        massFlux        0.0;
+        ho              0.0;
+        alphao          0.0;
+    }
+}
+// ************************************************************************* //
