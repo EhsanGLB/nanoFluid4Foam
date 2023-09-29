@@ -1,0 +1,22 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/turbulenceModels/incompressible/turbulenceModel \
+    -I$(LIB_SRC)/transportModels \
+    -I$(LIB_SRC)/transportModels/incompressible/singlePhaseTransportModel \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I../../../src4NF/lnInclude \
+    -I../../../src4NF/radiation4NF/lnInclude
+
+
+EXE_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lincompressibleTurbulenceModel \
+    -lincompressibleRASModels \
+    -lincompressibleLESModels \
+    -lincompressibleTransportModels \
+    -llduSolvers \
+    -lbasicThermophysicalModels \
+    -L$(FOAM_USER_LIBBIN) \
+    -lnanoFluid4Foam \
+    -lradiation4NF
