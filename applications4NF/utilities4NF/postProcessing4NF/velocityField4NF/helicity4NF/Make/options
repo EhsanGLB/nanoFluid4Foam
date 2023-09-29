@@ -1,0 +1,8 @@
+EXE_INC = \
+    -I../../../../../src4NF/postProcessing4NF/postCalc4NF/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+EXE_LIBS = \
+    $(FOAM_USER_LIBBIN)/postCalc4NF.o \
+    -lfiniteVolume
+
