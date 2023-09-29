@@ -1,0 +1,100 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.1                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs ("liblduSolvers.so");
+
+application     unsteadyStateNaturalConvection4NF;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         2000;
+
+deltaT          0.1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      3;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+libs ("libnanoFluid4Foam.so");//-nanoFluid4Foam
+
+InfoSwitches
+{
+    writePrecision  6;
+    writeJobInfo    0;
+    allowSystemOperations 1;
+}
+
+functions
+{
+    postProcess
+    {
+        functionObjectLibs	("libutilityFunctionObjects.so");
+        type			coded;
+        enabled			true;
+        outputControl		timeStep;//outputTime;
+        redirectType		postProcess;
+
+        code
+        #{
+            std::ofstream output;
+            output.open("postProcess.txt",std::ofstream::app);
+
+            //- constants
+            scalar charL = 0.025;
+            scalar kappa_bf = 0.628;
+            scalar deltaTemp = 2.0;
+
+            //- lookup fields
+            const volScalarField& T = mesh().lookupObject<volScalarField>("T");
+            const volScalarField& kappa = mesh().lookupObject<volScalarField>("kappa");
+            surfaceScalarField gradT = fvc::snGrad(T);
+
+            //- find id and compute Nusselt number
+            label rightID = T.mesh().boundaryMesh().findPatchID("right");
+            scalar rightArea = sum(T.mesh().magSf().boundaryField()[rightID]);
+            scalar rightHeatFluxAvg = sum(kappa.boundaryField()[rightID]*gradT.boundaryField()[rightID]*T.mesh().magSf().boundaryField()[rightID])/rightArea;
+            scalar righthAvg = rightHeatFluxAvg/deltaTemp;
+            scalar NusseltAvg = (righthAvg*charL)/(kappa_bf);
+            Info << "NusseltAvg = " << NusseltAvg << "\n";
+
+            //- save data
+            output << NusseltAvg << "\n";
+            output.close();
+        #};
+    }
+
+}
+
+// ************************************************************************* //
