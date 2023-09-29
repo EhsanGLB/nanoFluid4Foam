@@ -1,0 +1,136 @@
+NFDimensionSetDir = foam4NF/NFDimensionSet
+$(NFDimensionSetDir)/NFDimensionSet.C
+foam4NF/primitives/complex/complex4NF.C
+
+
+NFThermophysicalFunctionsDir = NFThermophysicalModels/NFThermophysicalFunctions
+$(NFThermophysicalFunctionsDir)/NFThermophysicalFunction/NFThermophysicalFunction.C
+$(NFThermophysicalFunctionsDir)/NFFunctions/NFExpPolyFunc/NFExpPolyFunc.C
+
+materialsDir = NFThermophysicalModels/materials
+$(materialsDir)/material/material.C
+$(materialsDir)/newMaterialConst/newMaterialConst.C
+$(materialsDir)/newMaterialFuncT/newMaterialFuncT.C
+
+materialMixtureDir = NFThermophysicalModels/materialMixture
+$(materialMixtureDir)/materialMixture/materialMixture.C
+
+baseFluidDir = NFThermophysicalModels/baseFluid
+$(baseFluidDir)/baseFluidDynamicViscosityModels/baseFluidDynamicViscosityModel/baseFluidDynamicViscosityModel.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/baseFluidDynamicViscosityModel/newBaseFluidDynamicViscosityModel.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/Newtonian/Newtonian.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/BirdCarreau/BirdCarreau.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/Krieger5/Krieger5.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/Quemada/Quemada.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/Yeleswarapu/Yeleswarapu.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/powerLaw/powerLaw.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/HerschelBulkley/HerschelBulkley.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/CrossPowerLaw/CrossPowerLaw.C
+$(baseFluidDir)/baseFluidDynamicViscosityModels/Casson/Casson.C
+$(baseFluidDir)/baseFluid/baseFluid.C
+
+particleModelsDir = NFThermophysicalModels/particleModels
+$(particleModelsDir)/particleModel/particleModel.C
+$(particleModelsDir)/particleModel/newParticleModel.C
+$(particleModelsDir)/MNP/MNP.C
+$(particleModelsDir)/MNEPCM/MNEPCM.C
+
+
+
+
+
+nanoFluidModels = NFThermophysicalModels/nanoFluidModels
+$(nanoFluidModels)/nanoFluidModel/nanoFluidModel.C
+$(nanoFluidModels)/nanoFluidModel/newNanoFluidModel.C
+
+DBModelsDir = $(nanoFluidModels)/brownianDiffusivityModels
+$(DBModelsDir)/brownianDiffusivityModel/brownianDiffusivityModel.C
+$(DBModelsDir)/brownianDiffusivityModel/newBrownianDiffusivityModel.C
+$(DBModelsDir)/Brownian/Brownian.C
+
+DTModelsDir = $(nanoFluidModels)/thermophoresisDiffusivityModels
+$(DTModelsDir)/thermophoresisDiffusivityModel/thermophoresisDiffusivityModel.C
+$(DTModelsDir)/thermophoresisDiffusivityModel/newThermophoresisDiffusivityModel.C
+$(DTModelsDir)/Brock/Brock.C
+$(DTModelsDir)/McNabMeisen/McNabMeisen.C
+$(DTModelsDir)/Talbot/Talbot.C
+
+monoKappaModelsDir = $(nanoFluidModels)/mono/monoThermalConductivityModels
+$(monoKappaModelsDir)/monoThermalConductivityModel/monoThermalConductivityModel.C
+$(monoKappaModelsDir)/monoThermalConductivityModel/newMonoThermalConductivityModel.C
+$(monoKappaModelsDir)/Maxwell/Maxwell.C
+$(monoKappaModelsDir)/HamiltonCrosser/HamiltonCrosser.C
+$(monoKappaModelsDir)/Xuan/Xuan.C
+$(monoKappaModelsDir)/JangChoi/JangChoi.C
+$(monoKappaModelsDir)/Kumar/Kumar.C
+$(monoKappaModelsDir)/KooKleinstreuer/KooKleinstreuer.C
+$(monoKappaModelsDir)/Prasher/Prasher.C
+$(monoKappaModelsDir)/Chon/Chon.C
+$(monoKappaModelsDir)/Xu/Xu.C
+$(monoKappaModelsDir)/Evans/Evans.C
+$(monoKappaModelsDir)/Yang/Yang.C
+$(monoKappaModelsDir)/kappaCorcione/kappaCorcione.C
+$(monoKappaModelsDir)/kappaPolyExp/kappaPolyExp.C
+$(monoKappaModelsDir)/WalvekarCNT/WalvekarCNT.C
+$(monoKappaModelsDir)/NanCNTC/NanCNTC.C
+$(monoKappaModelsDir)/XueCNT/XueCNT.C
+$(monoKappaModelsDir)/PatelCNT/PatelCNT.C
+$(monoKappaModelsDir)/MurshedCNT/MurshedCNT.C
+
+monoMuModelsDir = $(nanoFluidModels)/mono/monoDynamicViscosityModels
+$(monoMuModelsDir)/monoDynamicViscosityModel/monoDynamicViscosityModel.C
+$(monoMuModelsDir)/monoDynamicViscosityModel/newMonoDynamicViscosityModel.C
+$(monoMuModelsDir)/Brinkman/Brinkman.C
+$(monoMuModelsDir)/Einstein/Einstein.C
+$(monoMuModelsDir)/Mooney/Mooney.C
+$(monoMuModelsDir)/KriegerDougherty/KriegerDougherty.C
+$(monoMuModelsDir)/Nielsen/Nielsen.C
+$(monoMuModelsDir)/Batchelor/Batchelor.C
+$(monoMuModelsDir)/Graham/Graham.C
+$(monoMuModelsDir)/Kitano/Kitano.C
+$(monoMuModelsDir)/Chen/Chen.C
+$(monoMuModelsDir)/Masoumi/Masoumi.C
+$(monoMuModelsDir)/muPolyExp/muPolyExp.C
+$(monoMuModelsDir)/muCorcione/muCorcione.C
+
+$(nanoFluidModels)/mono/mono/mono.C
+
+
+
+hybridKappaModelsDir = $(nanoFluidModels)/hybrid/hybridThermalConductivityModels
+$(hybridKappaModelsDir)/hybridThermalConductivityModel/hybridThermalConductivityModel.C
+$(hybridKappaModelsDir)/hybridThermalConductivityModel/newHybridThermalConductivityModel.C
+$(hybridKappaModelsDir)/Devi/Devi.C
+$(hybridKappaModelsDir)/ChouguleSahu/ChouguleSahu.C
+$(hybridKappaModelsDir)/Wohld/Wohld.C
+
+hybridMuModelsDir = $(nanoFluidModels)/hybrid/hybridDynamicViscosityModels
+$(hybridMuModelsDir)/hybridDynamicViscosityModel/hybridDynamicViscosityModel.C
+$(hybridMuModelsDir)/hybridDynamicViscosityModel/newHybridDynamicViscosityModel.C
+$(hybridMuModelsDir)/hybridEinstein/hybridEinstein.C
+$(hybridMuModelsDir)/hybridBrinkman/hybridBrinkman.C
+
+$(nanoFluidModels)/hybrid/hybrid/hybrid.C
+
+
+
+finiteVolume4NFDir = finiteVolume4NF
+fields4NFDir = $(finiteVolume4NFDir)/fields4NF
+fvPatchFields4NFDir = $(fields4NFDir)/fvPatchFields4NF
+derived4NFDir = $(fvPatchFields4NFDir)/derived4NF
+$(derived4NFDir)/parabolicRadialVelocityBC4NF/parabolicRadialVelocityBC4NF.C
+$(derived4NFDir)/powerLawRadialVelocityBC4NF/powerLawRadialVelocityBC4NF.C
+$(derived4NFDir)/RobinBC4NF/RobinBC4NF.C
+$(derived4NFDir)/parabolicTroughCollectorBC4NF/parabolicTroughCollectorBC4NF.C
+$(derived4NFDir)/BuongiornoBC4NF/BuongiornoBC4NF.C
+$(derived4NFDir)/temperatureBC4NF/temperatureBC4NF.C
+$(derived4NFDir)/uniformVelocityWaveformBC4NF/uniformVelocityWaveformBC4NF.C
+$(derived4NFDir)/parabolicRadialVelocityWaveformBC4NF/parabolicRadialVelocityWaveformBC4NF.C
+$(derived4NFDir)/womersleyRadialVelocityWaveformBC4NF/womersleyRadialVelocityWaveformBC4NF.C
+$(derived4NFDir)/lumpedLIBBC4NF/lumpedLIBBC4NF.C
+$(derived4NFDir)/windowBC4NF/windowBC4NF.C
+$(derived4NFDir)/WKBC/WKBC.C
+
+
+
+LIB = $(FOAM_USER_LIBBIN)/libnanoFluid4Foam
