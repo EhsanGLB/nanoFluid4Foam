@@ -1,0 +1,54 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+#------------------------------- nanoFluid4Foam project -------------------------------#
+#Author
+    #Ehsan Golab, SUT. All rights reserved.
+    #Ehsan1996Golab@gmail.com
+
+#--------------------------------------------------------------------------------------#
+
+# cleancase is function that removes the files and directories.(rm -f : remove the file, rm -r : remove the directory).
+cleancase () {
+rm -f fluidDomain.fms
+rm -r processor*
+}
+
+# (getApplication) is an command to find the solver name from the controlDict file. Also, ($) use for the variable.
+application=$(getApplication)
+
+#to remove the files and directories befor rendering.
+cleancase
+
+
+cd constant/
+rm -f nu* 
+
+# (cd ..) back to 1 step.
+cd ..
+
+rm -r Py*
+rm -f log*
+rm -f Py*
+
+
+echo meshing...
+surfaceFeatureEdges fluidDomain.stl fluidDomain.fms
+cartesianMesh
+autoPatch 80 -overwrite
+createPatch -overwrite
+transformPoints -scale '(0.001 0.001 0.001)'
+checkMesh
+
+#(echo) prints in the terminal.
+echo run solver ...
+#pyFoamPlotRunner.py --non-persist $application #close windows after run
+$application
+
+#postProcess -func streamFunction
+cleancase
+
+# -------------------------------------------------------------------------- end-of-file

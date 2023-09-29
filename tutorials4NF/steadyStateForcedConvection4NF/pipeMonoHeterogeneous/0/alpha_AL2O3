@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.1                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      alpha_AL2O3;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions		[0 0 0 0 0 0 0];
+
+internalField		uniform 0.03;
+
+boundaryField
+{
+    inlet
+    {
+	type		fixedValue;
+	value		$internalField;
+    }
+
+    outlet
+    {
+	type		zeroGradient;
+    }
+
+
+    tube
+    {
+	type		BuongiornoBC4NF;
+        name            AL2O3;
+        massFlux        0.0;
+        ho              0.0;
+        alphao          0.0;
+    }
+}
+// ************************************************************************* //
