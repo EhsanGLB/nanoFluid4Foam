@@ -6,16 +6,16 @@
                           _| |_\   |_  _| |_     _| |_     
                          |_____|\____||_____|   |_____|   
 #------------------------------------------------------------------------------------------------#
-[                                    Author                                                      ]
+[                                    Authors                                                      ]
 [                 Ehsan Golab, Sharif University of Technology.                                  ]
 [                           Ehsan1996Golab@gmail.com                                             ]
-
-                      
+[                 Behzad Vahedi, FNRC, Shahid Beheshti University of Medical Sciences.           ]
+[                           BeziVahediii@gmail.com                                             ]                     
 
 
 #--------------------------------------description------------------------------------------------#
 
-nanoFluid4Foam is toolbox designed for OpenFOAM to produce nanofluid.
+nanoFluid4Foam is a toolbox designed for OpenFOAM to produce nanofluids.
 
 
 ### Where do I start? ###
