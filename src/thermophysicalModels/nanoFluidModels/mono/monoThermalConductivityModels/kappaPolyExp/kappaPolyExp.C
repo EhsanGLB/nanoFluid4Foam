@@ -1,0 +1,84 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | foam-extend: Open Source CFD
+   \\    /   O peration     | Version:     4.1
+    \\  /    A nd           | Web:         http://www.foam-extend.org
+     \\/     M anipulation  | For copyright notice see file Copyright
+-------------------------------------------------------------------------------
+License
+    This file is part of foam-extend.
+
+    foam-extend is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or (at your
+    option) any later version.
+
+    foam-extend is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with foam-extend.  If not, see <http://www.gnu.org/licenses/>.
+
+\*---------------------------------------------------------------------------*/
+
+#include "addToRunTimeSelectionTable.H"
+
+#include "kappaPolyExp.H"
+
+// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
+
+namespace Foam
+{
+namespace monoThermalConductivityModels
+{
+    defineTypeNameAndDebug(kappaPolyExp, 0);
+    addToRunTimeSelectionTable(monoThermalConductivityModel, kappaPolyExp, dictionary);
+
+
+// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
+
+kappaPolyExp::kappaPolyExp
+(
+    const dictionary& nanoFluidPropertiesDict,
+    const volVectorField& U,
+    const volScalarField& p,
+    const volScalarField& T,
+    const volScalarField& alpha,
+    const autoPtr<baseFluid>& baseFluidPtr,
+    const autoPtr<particleModel>& particleModelPtr
+)
+:
+    monoThermalConductivityModel(nanoFluidPropertiesDict, U, p, T, alpha, baseFluidPtr, particleModelPtr),
+    kappaPolyExpCoeffs_(nanoFluidPropertiesDict.subDict(typeName + "Coeffs")),
+    a0_(readScalar(kappaPolyExpCoeffs_.lookup("a0"))),
+    a1_(readScalar(kappaPolyExpCoeffs_.lookup("a1"))),
+    a2_(readScalar(kappaPolyExpCoeffs_.lookup("a2"))),
+    a3_(readScalar(kappaPolyExpCoeffs_.lookup("a3"))),
+    a4_(readScalar(kappaPolyExpCoeffs_.lookup("a4"))),
+    a5_(readScalar(kappaPolyExpCoeffs_.lookup("a5"))),
+    a6_(readScalar(kappaPolyExpCoeffs_.lookup("a6"))),
+    b_(readScalar(kappaPolyExpCoeffs_.lookup("b")))
+{}
+
+
+// * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * * //
+
+const volScalarField kappaPolyExp::kappa() const
+{
+    volScalarField kappa_(IOobject("kappaNF", T_.time().timeName(), T_.db(), IOobject::NO_READ, IOobject::NO_WRITE), T_.mesh(), dimensionedScalar("kappaNF", dimThermalConductivity, SMALL));
+    volScalarField kappabf_ = baseFluidPtr_->kappa();
+    dimensionedScalar dimlessT_("dimlessT", dimensionSet(0, 0, 0, 1, 0, 0, 0), scalar(1.0));
+
+    kappa_ = kappabf_ * ( a6_ * pow( alpha_ , 6.0) + a5_ * pow( alpha_ , 5.0) + a4_ * pow( alpha_ , 4.0) + a3_ * pow( alpha_ , 3.0) + a2_ * pow( alpha_ , 2.0) + a1_ * alpha_ + a0_ ) * exp( b_ * (T_/dimlessT_) );
+
+    return kappa_;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+} // End namespace monoThermalConductivityModels
+} // End namespace Foam
+
+// ************************************************************************* //
