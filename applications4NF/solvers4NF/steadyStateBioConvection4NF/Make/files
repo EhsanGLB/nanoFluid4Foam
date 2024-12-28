@@ -1,3 +1,0 @@
-steadyStateBioConvection4NF.C
-
-EXE = $(FOAM_USER_APPBIN)/steadyStateBioConvection4NF

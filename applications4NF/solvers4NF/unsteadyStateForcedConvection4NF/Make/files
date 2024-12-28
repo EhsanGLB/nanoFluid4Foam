@@ -1,3 +1,0 @@
-unsteadyStateForcedConvection4NF.C
-
-EXE = $(FOAM_USER_APPBIN)/unsteadyStateForcedConvection4NF
