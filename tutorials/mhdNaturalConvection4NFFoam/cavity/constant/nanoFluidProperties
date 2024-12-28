@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      nanoFluidProperties;
+}
+//************************************************ baseFluid ************************************************//
+baseFluid			(water);
+baseFluidDynamicViscosityModel  Newtonian;
+moleFraction			(1.0);
+#include "../../../materialsDict.H";
+
+
+//************************************************ particle ************************************************//
+particle			( (AL2O3 MNP) );
+particleDict
+{
+    AL2O3
+    {
+        Components		(AL2O3);
+        moleFraction		(1.0);
+    }
+}
+
+
+//************************************************ nanoFluid ************************************************//
+nanoFluidModel			(mono Homogenous);//Homogenous
+thermalConductivityModel	HamiltonCrosser;
+HamiltonCrosserCoeffs
+{
+    lambda			3.0;
+}
+
+dynamicViscosityModel		Brinkman;
+BrinkmanCoeffs{}
+
+
+//***************** Heterogeneous *****************//
+brownianDiffusivityModel	Brownian;
+BrownianCoeffs
+{
+    dnp				(33.0e-9);
+}
+
+thermophoresisDiffusivityModel		Brock;
+BrockCoeffs
+{
+    Cs				0.75;
+    Cm				1.14;
+    Ct				2.18;
+    lbf				0.275e-9;
+    dnp				(33.0e-9);
+}
+
+
+//############################################### End #######################################################//
