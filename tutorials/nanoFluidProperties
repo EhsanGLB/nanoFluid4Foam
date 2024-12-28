@@ -1,0 +1,422 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      nanoFluidProperties;
+}
+//------------------------------- nanoFluid4Foam project -------------------------------//
+//Author
+    //Ehsan Golab, SUT. All rights reserved.
+    //Ehsan1996Golab@gmail.com
+
+//--------------------------------------------------------------------------------------//
+
+
+//************************************************ baseFluid ************************************************//
+baseFluid			(water);
+baseFluidDynamicViscosityModel  Newtonian;
+moleFraction			(1.0);
+#include "/home/ehsan/Desktop/free4Foam/nanoFluid4Foam/NFTutorial/materialsDict.H";
+
+
+BirdCarreauCoeffs
+{
+    mu0				mu0 [1 -1 -1 0 0 0 0] 0.07404;
+    muInf			muInf [1 -1 -1 0 0 0 0] 0.003930;
+    k				k [0 0 1 0 0 0 0] 9.1034;
+    n				n [0 0 0 0 0 0 0] 0.4586;
+}
+
+powerLawCoeffs
+{
+    muMax			muMax [1 -1 -1 0 0 0 0] 0.003;
+    muMin			muMin [1 -1 -1 0 0 0 0] 0.00125;
+    k				k [1 -1 -1 0 0 0 0] 0.2073;
+    n				n [ 0 0 0 0 0 0 0 ] 0.4851;
+}
+
+CrossPowerLawCoeffs
+{
+    mu0				mu0 [1 -1 -1 0 0 0 0] 0.01;
+    muInf			muInf [1 -1 -1 0 0 0 0] 10;
+    m				m [0 0 1 0 0 0 0] 0.4;
+    n				n [0 0 0 0 0 0 0] 3;
+}
+
+HerschelBulkleyCoeffs
+{
+    mu0				mu0 [1 -1 -1 0 0 0 0] 0.01;
+    tau0			tau0 [ 1 -1 -2 0 0 0 0 ] 1;
+    k				k [ 1 -1 -1 0 0 0 0 ] 9.1034;
+    n				n [ 0 0  0 0 0 0 0 ] 0.4586;
+}
+
+CassonCoeffs
+{
+    m				m [ 0 2 -1 0 0 0 0 ] 3.934986e-6;
+    tau0			tau0 [ 0 2 -2 0 0 0 0 ] 2.9032e-6;
+    muMax			muMax [ 1 -1 -1 0 0 0 0 ] 13.3333e-6;
+    muMin			muMin [ 1 -1 -1 0 0 0 0 ] 3.9047e-6;
+}
+
+QuemadaCoeffs
+{
+    a0				a0 [ 0 0 0 0 0 0 0 ] 0.0611;
+    a1				a1 [ 0 0 0 0 0 0 0 ] 0.04778;
+    b0				b0 [ 0 0 0 0 0 0 0 ] 1.803;
+    b1				b1 [ 0 0 0 0 0 0 0 ] -3.683;
+    b2				b2 [ 0 0 0 0 0 0 0 ] 2.614;
+    b3				b3 [ 0 0 0 0 0 0 0 ] -0.001667;
+    c0				c0 [ 0 0 0 0 0 0 0 ] -7.022;
+    c1				c1 [ 0 0 0 0 0 0 0 ] 34.46;
+    c2				c2 [ 0 0 0 0 0 0 0 ] -39.96;
+    c3				c3 [ 0 0 0 0 0 0 0 ] 14.1;
+    gammaC0			gammaC0 [ 0 0 -1 0 0 0 0 ] 1.0;//needed for dimension only leave at 1.0!
+    muPlasma			muPlasma [ 1 -1 -1 0 0 0 0 ] 1.23e-3;
+}
+
+Krieger5Coeffs
+{
+    a				a [ 0 0 0 0 0 0 0 ] 0; // zero in MKM5
+    b				b [ 0 0 0 0 0 0 0 ] 8.781;
+    c				c [ 0 0 0 0 0 0 0 ] 2.824;
+    beta			beta [ 0 0 0 0 0 0 0 ] 16.1;    
+    lambda_			lambda_ [ 0 0 1 0 0 0 0 ] 1206;
+    nuK				nuK [ 0 0 0 0 0 0 0 ] 0.1427;
+    muPlasma			muPlasma [ 1 -1 -1 0 0 0 0 ] 1.23e-3;
+    Hcrit			Hcrit [ 0 0 0 0 0 0 0 ] 0.98;
+}
+
+KriegerDoughertyCoeffs
+{
+    n				n [ 0 0 0 0 0 0 0 ] 1.82;
+    Hcrit			Hcrit [ 0 0 0 0 0 0 0 ] 0.67;
+    muPlasma			muPlasma [ 1 -1 -1 0 0 0 0 ] 1.23e-3;
+}
+
+YeleswarapuCoeffs
+{
+    a1				a1 [ 0 0 0 0 0 0 0 ] -0.02779;
+    a1				a2 [ 0 0 0 0 0 0 0 ] 1.012;
+    a3				a3 [ 0 0 0 0 0 0 0 ] -0.636;
+    b1				b1 [ 0 0 0 0 0 0 0 ] 0.0749;
+    b2				b2 [ 0 0 0 0 0 0 0 ] -0.1911;
+    b3				b3 [ 0 0 0 0 0 0 0 ] 0.1624;
+    k				k [ 0 0 0 0 0 0 0 ] 8.001;
+    muPlasma			muPlasma [ 1 -1 -1 0 0 0 0 ] 1.23e-3;
+}
+
+//************************************************ particle ************************************************//
+particle			( (AL2O3 MNP) );// (Name Type) for mono
+particle			( (AL2O3 MNP) (AlCu MNP) (NEPCMOne MNEPCM) );//( (Name Type) (Name Type) ... ) for hybrid
+particleDict
+{
+    AL2O3//- Pure material
+    {
+        Components		(AL2O3);
+        moleFraction		(1.0);
+    }
+
+    AlCu//- Mixture material
+    {
+        Components		(Al Cu);
+        moleFraction		(0.3 0.7);
+    }
+
+    NEPCMOne
+    {
+        MNEPCMCoreDict
+        {
+            Components		(n_octadecane);
+            moleFraction	(1.0);
+        }
+        MNEPCMShellDict
+        {
+            Components		(polyurethane);
+            moleFraction	(1.0);
+        }
+	d			100e-9;
+	weightRatio		0.8;
+    }
+}
+
+
+//************************************************ Heterogeneous ************************************************//
+brownianDiffusivityModel	Brownian;//- Models: Brownian
+
+BrownianCoeffs
+{
+    dnp				(50e-9 33e-9 60e-9);
+}
+
+
+thermophoresisDiffusivityModel	Talbot;//- Models: McNabMeisen, Brock, and Talbot
+
+McNabMeisenCoeffs{}
+
+BrockCoeffs
+{
+    Cs				0.75;
+    Cm				1.14;
+    Ct				2.18;
+    lbf				0.738e-9;
+    dnp				(50e-9 33e-9 60e-9);
+
+}
+
+TalbotCoeffs
+{
+    Cs				1.17;
+    Cm				1.14;
+    Ct				2.18;
+    lbf				0.738e-9;
+    dnp				(50e-9 33e-9 60e-9);
+}
+
+
+//************************************************ hybridNanoFluid ************************************************//
+nanoFluidModel			(hybrid Homogenous);//- Models: Homogenous and Heterogeneous
+
+thermalConductivityModel	Wohld;//- Models: Devi, ChouguleSahu, and Wohld
+
+DeviCoeffs
+{
+    lambda			(3.0 3.0 3.0);
+}
+
+ChouguleSahuCoeffs
+{
+    dnp				(50e-9 33e-9 60e-9);
+    dbf		dbf		[ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+WohldCoeffs
+{
+    dnp				(50e-9 33e-9 60e-9);
+}
+
+
+dynamicViscosityModel		hybridBrinkman;//- Models: hybridEinstein and hybridBrinkman
+
+hybridEinsteinCoeffs{}
+
+hybridBrinkmanCoeffs{}
+
+
+//************************************************ monoNanoFluid ************************************************//
+nanoFluidModel			(mono Homogenous);//- Models: Homogenous and Heterogeneous
+
+thermalConductivityModel	Maxwell;//- Models: Maxwell, HamiltonCrosser, Xuan, JangChoi, Kumar, KooKleinstreuer, Prasher, Chon, Xu, Evans, Yang, kappaCorcione, kappaPolyExp, WalvekarCNT, NanCNTC, XueCNT, PatelCNT, MurshedCNT
+
+MaxwellCoeffs{}
+
+HamiltonCrosserCoeffs
+{
+    lambda			3.0;
+}
+
+XuanCoeffs
+{
+    lambda			3.0;
+    Df				1.51;
+    C				0.63;
+    Nnp				10;
+    c c [ 0 2 -1 0 0 0 0 ]	1.0;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+JangChoiCoeffs
+{
+    beta			0.01;
+    C				18e6;
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    lbf lbf [ 0 1 0 0 0 0 0 ]	0.738e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+KumarCoeffs
+{
+    Cco Cco [ 1 0 -2 -1 0 0 0 ]	1.0;
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+KooKleinstreuerCoeffs
+{
+    lambda			3.0;
+    Abeta Abeta [ -1 -1 3 0 0 0 0 ]	0.0137;//f = A*(100*alpha)^B
+    Bbeta Bbeta [ 0 0 0 0 0 0 0 ]	-0.8229;
+    Af Af [ 0 0 0 0 0 0 0 ]	-6.04;//( A_f * alpha + B_f ) * T + C_f * alpha + D_f;
+    Bf Bf [ 0 0 0 0 0 0 0 ]	0.4705;
+    Cf Cf [ 0 0 0 1 0 0 0 ]	1722.3;
+    Df Df [ 0 0 0 1 0 0 0 ]	-134.63;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+PrasherCoeffs
+{
+    Aeco Aeco [ 0 0 0 0 0 0 0 ]	4.0e4;
+    Meco			2.5;
+    Rb Rb [ -1 0 3 1 0 0 0 ]	77e-10;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+ChonCoeffs
+{
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    lbf lbf [ 0 1 0 0 0 0 0 ]	0.738e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+XuCoeffs
+{
+    lambda			3.0;
+    dd				2.0;
+    Hco				85.0;
+    Nunp Nunp [ 0 0 0 0 0 0 0 ]	2.0;
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    dnpmax dnpmax [ 0 1 0 0 0 0 0 ]	300e-9;
+    dnpmin dnpmin [ 0 1 0 0 0 0 0 ]	50e-9;
+    dnpavg dnpavg [ 0 1 0 0 0 0 0 ]	150e-9;
+}
+
+EvansCoeffs
+{
+    gamma			1.0;
+}
+
+YangCoeffs
+{
+    Rb Rb [ -1 0 3 1 0 0 0 ]	7.7e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+kappaCorcioneCoeffs
+{
+    T_fr T_fr [ 0 0 0 1 0 0 0 ]	273.15;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+kappaPolyExpCoeffs
+{
+    b				-1.0;
+    a0				0.01;
+    a1				0.01;
+    a2				0.01;
+    a3				0.01;
+    a4				0.01;
+    a5				0.01;
+    a6				0.01;
+}
+
+WalvekarCNTCoeffs
+{
+    lcnt lcnt [ 0 1 0 0 0 0 0 ]	300e-6;
+    T0 T0 [ 0 0 0 1 0 0 0 ]	273.15;
+    dcnt dcnt [ 0 1 0 0 0 0 0 ]	100e-9;
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+NanCNTCCoeffs
+{
+    Rk Rk [ -1 0 3 1 0 0 0 ]	8e-8;
+    lcnt lcnt [ 0 1 0 0 0 0 0 ]	5e-6;
+    dcnt dcnt [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+XueCNTCoeffs{}
+
+PatelCNTCoeffs
+{
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    dcnt dcnt [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+MurshedCNTCoeffs
+{
+    clr				60.0;
+    dcnt dcnt [ 0 1 0 0 0 0 0 ]	100e-9;
+    sigma sigma [ 0 1 0 0 0 0 0 ]	0.4e-9;
+}
+
+
+/////////////////////////////////////////////////
+dynamicViscosityModel 		Brinkman;//- Models: Brinkman, Einstein, Mooney, KriegerDougherty, Nielsen, Batchelor, Graham, Kitano, Chen, Masoumi, muPolyExp, muCorcione
+
+BrinkmanCoeffs{}
+
+EinsteinCoeffs{}
+
+MooneyCoeffs
+{
+    kesi			2.5;
+    zeta			1.35;
+}
+
+KriegerDoughertyCoeffs
+{
+    alpham alpham [ 0 0 0 0 0 0 0 ]	0.605;
+    etha			2.5;
+}
+
+NielsenCoeffs
+{
+    alpham alpham [ 0 0 0 0 0 0 0 ]	0.605;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+BatchelorCoeffs{}
+
+GrahamCoeffs
+{
+    h h [ 0 1 0 0 0 0 0 ]	10e-9;
+}
+
+KitanoCoeffs
+{
+    alpham alpham [ 0 0 0 0 0 0 0 ]	0.605;
+}
+
+ChenCoeffs
+{
+    D				1.8;
+    da da [ 0 1 0 0 0 0 0 ]	300e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+    alpham alpham [ 0 0 0 0 0 0 0 ]	0.605;
+}
+
+MasoumiCoeffs
+{
+    c1 c1 [ 1 -2 -1 0 0 0 0 ]	-1.133e-6;
+    c2 c2 [ 1 -1 -1 0 0 0 0 ]	-2.771e-6;
+    c3 c3 [ 1 -2 -1 0 0 0 0 ]	9e-8;
+    c4 c4 [ 1 -1 -1 0 0 0 0 ]	-3.93e-7;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}
+
+muPolyExpCoeffs
+{
+    b				-1.0;
+    a0				0.01;
+    a1				0.01;
+    a2				0.01;
+    a3				0.01;
+    a4				0.01;
+    a5				0.01;
+    a6				0.01;
+}
+
+muCorcioneCoeffs
+{
+    dbf dbf [ 0 1 0 0 0 0 0 ]	100e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	100e-9;
+}

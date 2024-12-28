@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      nanoFluidProperties1;
+}
+//------------------------------- nanoFluid4Foam project -------------------------------//
+//Author
+    //Ehsan Golab, SUT. All rights reserved.
+    //Ehsan1996Golab@gmail.com
+
+//--------------------------------------------------------------------------------------//
+
+
+//************************************************ baseFluid ************************************************//
+baseFluid			(therminolVP1);
+baseFluidDynamicViscosityModel  Newtonian;
+moleFraction			(1.0);
+#include "../../../materialsDict.H";
+
+
+//************************************************ particle ************************************************//
+particle			( (CuO MNP) (Ag MNP) );
+particleDict
+{
+    CuO
+    {
+        Components		(CuO);
+        moleFraction		(1.0);
+    }
+
+    Ag
+    {
+        Components		(Ag);
+        moleFraction		(1.0);
+    }
+}
+
+
+//************************************************ nanoFluid ************************************************//
+nanoFluidModel			(hybrid Heterogeneous);//Homogenous-Heterogeneous
+thermalConductivityModel	ChouguleSahu;
+ChouguleSahuCoeffs
+{
+    dnp				(30.0e-9 60.0e-9);
+    dbf	dbf [ 0 1 0 0 0 0 0 ]	0.275e-9;
+}
+
+dynamicViscosityModel		hybridEinstein;
+hybridEinsteinCoeffs{}
+
+
+//***************** Heterogeneous *****************//
+brownianDiffusivityModel	Brownian;
+BrownianCoeffs
+{
+    dnp				(30.0e-9 60.0e-9);
+}
+
+thermophoresisDiffusivityModel		McNabMeisen;
+McNabMeisenCoeffs{}
+
+
+//############################################### End #######################################################//
