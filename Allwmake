@@ -8,7 +8,7 @@ set -x
     #Ehsan1996Golab@gmail.com
 
 #--------------------------------------------------------------------------------------#
-# active permission
+# activate permission
 find -type f -exec chmod 777 {} \;
 
 # install libs
