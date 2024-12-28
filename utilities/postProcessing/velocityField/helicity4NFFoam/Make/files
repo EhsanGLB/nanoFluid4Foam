@@ -1,3 +1,0 @@
-helicity4NFFoam.C
-
-EXE = $(FOAM_USER_APPBIN)/helicity4NFFoam

@@ -1,8 +1,0 @@
-EXE_INC = \
-    -I$(LIB_SRC)/finiteVolume/lnInclude \
-    -I$(WM_PROJECT_USER_DIR)/src/NF4Foam/postProcessing/postCalc/lnInclude
-
-
-EXE_LIBS = \
-    -lfiniteVolume \
-    $(FOAM_USER_LIBBIN)/postCalc4NFFoam.o
