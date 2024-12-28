@@ -1,3 +1,0 @@
-postCalc4NF.C
-
-LIB = $(FOAM_USER_LIBBIN)/postCalc4NF

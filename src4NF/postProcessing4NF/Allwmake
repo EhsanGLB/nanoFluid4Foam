@@ -1,9 +1,0 @@
-#!/bin/sh
-cd ${0%/*} || exit 1    # run from this directory
-set -x
-
-wmake libo postCalc4NF
-
-functionObjects4NF/Allwmake
-
-# ----------------------------------------------------------------- end-of-file
