@@ -1,0 +1,87 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      nanoFluidProperties;
+}
+//------------------------------- nanoFluid4Foam project -------------------------------//
+//Author
+    //Ehsan Golab, SUT. All rights reserved.
+    //Ehsan1996Golab@gmail.com
+
+//--------------------------------------------------------------------------------------//
+
+
+//************************************************ baseFluid ************************************************//
+baseFluid			(water);
+baseFluidDynamicViscosityModel  Newtonian;
+moleFraction			(1.0);
+#include "../../../../materialsDict.H";
+
+
+//************************************************ particle ************************************************//
+particle			( (AL2O3 MNP) );//( (NEPCMOne MNEPCM) );
+particleDict
+{
+    AL2O3
+    {
+        Components		(AL2O3);
+        moleFraction		(1.0);
+    }
+
+
+
+    NEPCMOne
+    {
+        MNEPCMCoreDict
+        {
+            Components		(n_octadecane);
+            moleFraction	(1.0);
+        }
+        MNEPCMShellDict
+        {
+            Components		(PMMA);
+            moleFraction	(1.0);
+        }
+	d			30e-9;
+	weightRatio		0.9;
+    }
+}
+
+
+//************************************************ nanoFluid ************************************************//
+nanoFluidModel			(mono Homogenous);
+thermalConductivityModel	Evans;
+EvansCoeffs
+{
+    gamma			1.0;
+}
+
+dynamicViscosityModel		Graham;
+GrahamCoeffs
+{
+    h h [ 0 1 0 0 0 0 0 ]	10e-9;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	30e-9;
+}
+
+//***************** Heterogeneous *****************//
+brownianDiffusivityModel	Brownian;
+BrownianCoeffs
+{
+    dnp				(30e-9);
+}
+
+thermophoresisDiffusivityModel		McNabMeisen;
+McNabMeisenCoeffs{}
+
+
+//############################################### End #######################################################//
