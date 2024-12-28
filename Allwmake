@@ -2,21 +2,8 @@
 cd ${0%/*} || exit 1    # run from this directory
 set -x
 
-#------------------------------- nanoFluid4Foam project -------------------------------#
-#Author
-    #Ehsan Golab, SUT. All rights reserved.
-    #Ehsan1996Golab@gmail.com
 
-#--------------------------------------------------------------------------------------#
-
-# install libs
-cp -r src $WM_PROJECT_USER_DIR/src/NF4Foam
-$WM_PROJECT_USER_DIR/src/NF4Foam/Allwmake
-
-
-
-# install solvers
-applications/Allwmake
-#src/postProcessing/Allwmake
+wmake all solvers
+wmake all utilities
 
 # ----------------------------------------------------------------- end-of-file
