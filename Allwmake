@@ -8,6 +8,8 @@ set -x
     #Ehsan1996Golab@gmail.com
 
 #--------------------------------------------------------------------------------------#
+# active permission
+find -type f -exec chmod 777 {} \;
 
 # install libs
 cp -r src $WM_PROJECT_USER_DIR/src/NF4Foam
