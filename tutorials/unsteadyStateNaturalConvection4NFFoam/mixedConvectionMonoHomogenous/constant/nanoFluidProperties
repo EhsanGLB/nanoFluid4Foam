@@ -1,0 +1,86 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      nanoFluidProperties;
+}
+//------------------------------- nanoFluid4Foam project -------------------------------//
+//Author
+    //Ehsan Golab, SUT. All rights reserved.
+    //Ehsan1996Golab@gmail.com
+
+//--------------------------------------------------------------------------------------//
+
+
+//************************************************ baseFluid ************************************************//
+baseFluid			(water);
+baseFluidDynamicViscosityModel  Newtonian;
+moleFraction			(1.0);
+#include "../../../materialsDict.H";
+
+
+//************************************************ particle ************************************************//
+particle			( (MEPCMOne MNEPCM) );
+particleDict
+{
+    MEPCMOne
+    {
+        MNEPCMCoreDict
+        {
+            Components		(n_Docosane);
+            moleFraction	(1.0);
+        }
+        MNEPCMShellDict
+        {
+            Components		(PMMA);
+            moleFraction	(1.0);
+        }
+	d			20e-6;
+	weightRatio		0.8;
+    }
+}
+
+
+//************************************************ nanoFluid ************************************************//
+nanoFluidModel			(mono Homogenous);
+thermalConductivityModel	Prasher;
+PrasherCoeffs
+{
+    Aeco Aeco [ 0 0 0 0 0 0 0 ]	4.0e4;
+    Meco			2.5;
+    Rb Rb [ -1 0 3 1 0 0 0 ]	77e-10;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	20e-6;
+}
+
+dynamicViscosityModel		Masoumi;
+MasoumiCoeffs
+{
+    c1 c1 [ 1 -2 -1 0 0 0 0 ]	-1.133e-6;
+    c2 c2 [ 1 -1 -1 0 0 0 0 ]	-2.771e-6;
+    c3 c3 [ 1 -2 -1 0 0 0 0 ]	9.0e-8;
+    c4 c4 [ 1 -1 -1 0 0 0 0 ]	-3.93e-7;
+    dnp dnp [ 0 1 0 0 0 0 0 ]	20e-6;
+}
+
+
+//***************** Heterogeneous *****************//
+brownianDiffusivityModel	Brownian;
+BrownianCoeffs
+{
+    dnp				(20.0e-6);
+}
+
+thermophoresisDiffusivityModel		McNabMeisen;
+McNabMeisenCoeffs{}
+
+
+//############################################### End #######################################################//

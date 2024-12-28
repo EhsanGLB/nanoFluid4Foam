@@ -1,0 +1,100 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.1                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs
+(
+    "liblduSolvers.so"
+    "libNF4Foam.so"
+)
+
+application     unsteadyStateForcedConvection4NFFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         6;
+
+deltaT          0.01;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.8;
+
+maxDeltaT	0.01;
+
+InfoSwitches
+{
+    writePrecision  6;
+    writeJobInfo    0;
+    allowSystemOperations 1;
+}
+
+functions
+{
+    postProcess
+    {
+        functionObjectLibs	("libutilityFunctionObjects.so");
+        type			coded;
+        enabled			true;
+        outputControl		outputTime;//timeStep;
+        redirectType		postProcess;
+
+        code
+        #{
+            std::ofstream output;
+            output.open("postProcess.txt",std::ofstream::app);
+
+            //- lookup fields
+            const surfaceScalarField& phi = mesh().lookupObject<surfaceScalarField>("phi");
+
+
+            //- calculate flow rate
+            label inletID_ = phi.mesh().boundaryMesh().findPatchID("inlet");
+            scalar inletFlowRate_ = sum(phi.boundaryField()[inletID_]);
+            scalar inletArea_ = sum(phi.mesh().magSf().boundaryField()[inletID_]);
+            scalar inletVelocity_ = inletFlowRate_/inletArea_;
+            Info << "inletFlowRate = " << inletFlowRate_ << "\t\t" << "inletVelocity = " << inletVelocity_ << "\n";
+
+            //- lookup current time and deltaT
+            scalar t_ = phi.mesh().time().value();
+
+            output << t_ << "\t\t" << inletFlowRate_ << "\t\t" << inletVelocity_ << "\n";
+            output.close();
+        #};
+    }
+}
+// ************************************************************************* //
