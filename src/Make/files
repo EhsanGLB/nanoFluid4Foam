@@ -1,0 +1,153 @@
+dimensionSetDir = foam/dimensionSet
+$(dimensionSetDir)/dimensionSets4NFFoam.C
+foam/primitives/complex4NFFoam/complex4NFFoam.C
+
+
+thermophysicalFunctionsDir = thermophysicalModels/thermophysicalFunctions
+$(thermophysicalFunctionsDir)/thermophysicalFunction4NFFoam/thermophysicalFunction4NFFoam.C
+$(thermophysicalFunctionsDir)/functions/expPolyfunc/expPolyfunc.C
+
+
+materialsDir = thermophysicalModels/materials
+$(materialsDir)/material/material.C
+$(materialsDir)/newMaterialConst/newMaterialConst.C
+$(materialsDir)/newMaterialFuncT/newMaterialFuncT.C
+
+
+materialMixtureDir = thermophysicalModels/materialMixture
+$(materialMixtureDir)/materialMixture/materialMixture.C
+
+
+baseFluidDir = thermophysicalModels/baseFluid
+baseFluidMuDir = $(baseFluidDir)/baseFluidDynamicViscosityModels
+$(baseFluidMuDir)/baseFluidDynamicViscosityModel/baseFluidDynamicViscosityModel.C
+$(baseFluidMuDir)/baseFluidDynamicViscosityModel/newBaseFluidDynamicViscosityModel.C
+$(baseFluidMuDir)/Newtonian/Newtonian.C
+$(baseFluidMuDir)/BirdCarreau/BirdCarreau.C
+$(baseFluidMuDir)/Krieger5/Krieger5.C
+$(baseFluidMuDir)/Quemada/Quemada.C
+$(baseFluidMuDir)/Yeleswarapu/Yeleswarapu.C
+$(baseFluidMuDir)/powerLaw/powerLaw.C
+$(baseFluidMuDir)/HerschelBulkley/HerschelBulkley.C
+$(baseFluidMuDir)/CrossPowerLaw/CrossPowerLaw.C
+$(baseFluidMuDir)/Casson/Casson.C
+$(baseFluidDir)/baseFluid/baseFluid.C
+
+
+particleModelsDir = thermophysicalModels/particleModels
+$(particleModelsDir)/particleModel/particleModel.C
+$(particleModelsDir)/particleModel/newParticleModel.C
+$(particleModelsDir)/MNP/MNP.C
+$(particleModelsDir)/MNEPCM/MNEPCM.C
+
+
+nanoFluidModels = thermophysicalModels/nanoFluidModels
+$(nanoFluidModels)/nanoFluidModel/nanoFluidModel.C
+$(nanoFluidModels)/nanoFluidModel/newNanoFluidModel.C
+
+DBModelsDir = $(nanoFluidModels)/brownianDiffusivityModels
+$(DBModelsDir)/brownianDiffusivityModel/brownianDiffusivityModel.C
+$(DBModelsDir)/brownianDiffusivityModel/newBrownianDiffusivityModel.C
+$(DBModelsDir)/Brownian/Brownian.C
+
+DTModelsDir = $(nanoFluidModels)/thermophoresisDiffusivityModels
+$(DTModelsDir)/thermophoresisDiffusivityModel/thermophoresisDiffusivityModel.C
+$(DTModelsDir)/thermophoresisDiffusivityModel/newThermophoresisDiffusivityModel.C
+$(DTModelsDir)/Brock/Brock.C
+$(DTModelsDir)/McNabMeisen/McNabMeisen.C
+$(DTModelsDir)/Talbot/Talbot.C
+
+
+monoKappaModelsDir = $(nanoFluidModels)/mono/monoThermalConductivityModels
+$(monoKappaModelsDir)/monoThermalConductivityModel/monoThermalConductivityModel.C
+$(monoKappaModelsDir)/monoThermalConductivityModel/newMonoThermalConductivityModel.C
+$(monoKappaModelsDir)/Maxwell/Maxwell.C
+$(monoKappaModelsDir)/HamiltonCrosser/HamiltonCrosser.C
+$(monoKappaModelsDir)/Xuan/Xuan.C
+$(monoKappaModelsDir)/JangChoi/JangChoi.C
+$(monoKappaModelsDir)/Kumar/Kumar.C
+$(monoKappaModelsDir)/KooKleinstreuer/KooKleinstreuer.C
+$(monoKappaModelsDir)/Prasher/Prasher.C
+$(monoKappaModelsDir)/Chon/Chon.C
+$(monoKappaModelsDir)/Xu/Xu.C
+$(monoKappaModelsDir)/Evans/Evans.C
+$(monoKappaModelsDir)/Yang/Yang.C
+$(monoKappaModelsDir)/kappaCorcione/kappaCorcione.C
+$(monoKappaModelsDir)/kappaPolyExp/kappaPolyExp.C
+$(monoKappaModelsDir)/WalvekarCNT/WalvekarCNT.C
+$(monoKappaModelsDir)/NanCNTC/NanCNTC.C
+$(monoKappaModelsDir)/XueCNT/XueCNT.C
+$(monoKappaModelsDir)/PatelCNT/PatelCNT.C
+$(monoKappaModelsDir)/MurshedCNT/MurshedCNT.C
+
+
+monoMuModelsDir = $(nanoFluidModels)/mono/monoDynamicViscosityModels
+$(monoMuModelsDir)/monoDynamicViscosityModel/monoDynamicViscosityModel.C
+$(monoMuModelsDir)/monoDynamicViscosityModel/newMonoDynamicViscosityModel.C
+$(monoMuModelsDir)/Brinkman/Brinkman.C
+$(monoMuModelsDir)/Einstein/Einstein.C
+$(monoMuModelsDir)/Mooney/Mooney.C
+$(monoMuModelsDir)/KriegerDougherty/KriegerDougherty.C
+$(monoMuModelsDir)/Nielsen/Nielsen.C
+$(monoMuModelsDir)/Batchelor/Batchelor.C
+$(monoMuModelsDir)/Graham/Graham.C
+$(monoMuModelsDir)/Kitano/Kitano.C
+$(monoMuModelsDir)/Chen/Chen.C
+$(monoMuModelsDir)/Masoumi/Masoumi.C
+$(monoMuModelsDir)/muPolyExp/muPolyExp.C
+$(monoMuModelsDir)/muCorcione/muCorcione.C
+
+$(nanoFluidModels)/mono/mono/mono.C
+
+
+hybridKappaModelsDir = $(nanoFluidModels)/hybrid/hybridThermalConductivityModels
+$(hybridKappaModelsDir)/hybridThermalConductivityModel/hybridThermalConductivityModel.C
+$(hybridKappaModelsDir)/hybridThermalConductivityModel/newHybridThermalConductivityModel.C
+$(hybridKappaModelsDir)/Devi/Devi.C
+$(hybridKappaModelsDir)/ChouguleSahu/ChouguleSahu.C
+$(hybridKappaModelsDir)/Wohld/Wohld.C
+
+hybridMuModelsDir = $(nanoFluidModels)/hybrid/hybridDynamicViscosityModels
+$(hybridMuModelsDir)/hybridDynamicViscosityModel/hybridDynamicViscosityModel.C
+$(hybridMuModelsDir)/hybridDynamicViscosityModel/newHybridDynamicViscosityModel.C
+$(hybridMuModelsDir)/hybridEinstein/hybridEinstein.C
+$(hybridMuModelsDir)/hybridBrinkman/hybridBrinkman.C
+
+$(nanoFluidModels)/hybrid/hybrid/hybrid.C
+
+
+transportModels/incompressible/viscosityModels/NF4Foam/NF4Foam.C
+
+turbulenceModelsDir = turbulenceModels
+incompressibleDir = $(turbulenceModelsDir)/incompressible
+kappatWallFunctionsDir = $(incompressibleDir)/RAS/derivedFvPatchFields/wallFunctions/kappatWallFunctions
+$(kappatWallFunctionsDir)/kappatWallFunction4NFFoam/kappatWallFunction4NFFoamFvPatchScalarField.C
+$(kappatWallFunctionsDir)/kappatJayatillekeWallFunction4NFFoam/kappatJayatillekeWallFunction4NFFoamFvPatchScalarField.C
+
+
+
+finiteVolumeDir = finiteVolume
+fieldsDir = $(finiteVolumeDir)/fields
+fvPatchFieldsDir = $(fieldsDir)/fvPatchFields
+derivedDir = $(fvPatchFieldsDir)/derived
+$(derivedDir)/buongiorno4NFFoam/buongiorno4NFFoam.C
+$(derivedDir)/lumpedLIB4NFFoam/lumpedLIB4NFFoam.C
+$(derivedDir)/parabolicRadialVelocity4NFFoam/parabolicRadialVelocity4NFFoam.C
+$(derivedDir)/parabolicRadialVelocityWaveform4NFFoam/parabolicRadialVelocityWaveform4NFFoam.C
+$(derivedDir)/parabolicCollector4NFFoam/parabolicCollector4NFFoam.C
+$(derivedDir)/powerLawRadialVelocity4NFFoam/powerLawRadialVelocity4NFFoam.C
+$(derivedDir)/robin4NFFoam/robin4NFFoam.C
+$(derivedDir)/robinConv4NFFoam/convCoeffModels/convCoeffModel/convCoeffModel.C
+$(derivedDir)/robinConv4NFFoam/convCoeffModels/convCoeffModel/newConvCoeffModel.C
+$(derivedDir)/robinConv4NFFoam/convCoeffModels/flatPlateFC/flatPlateFC.C
+$(derivedDir)/robinConv4NFFoam/robinConv4NFFoam.C
+$(derivedDir)/uniformVelocityWaveform4NFFoam/uniformVelocityWaveform4NFFoam.C
+$(derivedDir)/WKBC4NFFoam/WKBC4NFFoam.C
+$(derivedDir)/womersleyRadialVelocityWaveform4NFFoam/womersleyRadialVelocityWaveform4NFFoam.C
+$(derivedDir)/photovoltaic4NFFoam/photovoltaic4NFFoam.C
+
+
+
+
+
+LIB = $(FOAM_USER_LIBBIN)/libNF4Foam

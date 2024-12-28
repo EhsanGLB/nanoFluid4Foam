@@ -1,0 +1,13 @@
+helicity4NFFoam/helicity4NFFoam.C
+helicity4NFFoam/helicity4NFFoamFunctionObject.C
+
+LNH4NFFoam/LNH4NFFoam.C
+LNH4NFFoam/LNH4NFFoamFunctionObject.C
+
+WSS4NFFoam/WSS4NFFoam.C
+WSS4NFFoam/WSS4NFFoamFunctionObject.C
+
+magWSS4NFFoam/magWSS4NFFoam.C
+magWSS4NFFoam/magWSS4NFFoamFunctionObject.C
+
+LIB = $(FOAM_USER_LIBBIN)/libutilityFunctionObjects4NFFoam
