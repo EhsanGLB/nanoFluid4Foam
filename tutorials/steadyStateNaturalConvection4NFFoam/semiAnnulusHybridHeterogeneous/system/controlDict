@@ -37,7 +37,7 @@ writeControl    timeStep;
 
 writeInterval   100;
 
-purgeWrite      0;
+purgeWrite      3;
 
 writeFormat     ascii;
 

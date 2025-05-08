@@ -28,7 +28,7 @@ divSchemes
 {
     default				none;
     div(phi,U)				Gauss upwind;//Gauss GammaV 0.2;
-    div(phi,T)				Gauss upwind;
+    div((phi*interpolate((rho*Cp))),T)	bounded Gauss upwind;
     div(phi,k)				Gauss upwind;
     div(phi,epsilon)			Gauss upwind;
     div(phi,R)				Gauss upwind;

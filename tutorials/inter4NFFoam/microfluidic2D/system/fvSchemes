@@ -17,36 +17,36 @@ FoamFile
 
 ddtSchemes
 {
-    default         Euler;
+    default				Euler;
 }
 
 gradSchemes
 {
-    default         Gauss linear;
-    grad(U)         Gauss linear;
-    grad(alpha1)    Gauss linear;
+    default				Gauss linear;
+    grad(U)				Gauss linear;
+    grad(alpha1)			Gauss linear;
 }
 
 divSchemes
 {
-    div(rho*phi,U)  Gauss limitedLinearV 1;
-    div(phi,alpha)  Gauss vanLeer01;
-    div(phirb,alpha) Gauss interfaceCompression;
+    div(rho*phi,U)			Gauss limitedLinearV 1;
+    div(phi,alpha)			Gauss vanLeer01;
+    div(phirb,alpha)			Gauss interfaceCompression;
 }
 
 laplacianSchemes
 {
-    default         Gauss linear corrected;
+    default				Gauss linear corrected;
 }
 
 interpolationSchemes
 {
-    default         linear;
+    default				linear;
 }
 
 snGradSchemes
 {
-    default         corrected;
+    default				corrected;
 }
 
 

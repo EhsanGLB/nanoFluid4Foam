@@ -16,6 +16,7 @@
         radiation->Ru()
       - fvm::Sp(4.0*radiation->Rp()*pow(T_,3), T)
       - radiation->Rp()*pow(T_,3)*(T_ - 4.0*T)
+      + hsPM
     );
 
     TEqn.solve();

@@ -26,6 +26,7 @@ application=$(getApplication)
 
 
 echo run blokMesh ...
+m4 -P constant/polyMesh/blockMeshDictConicalCylinderAndEmptyRec.m4 > constant/polyMesh/blockMeshDict
 #m4 -P constant/polyMesh/blockMeshDictConicalCylinder.m4 > constant/polyMesh/blockMeshDict
 #m4 -P constant/polyMesh/blockMeshDictConicalCylinderAndExternalSquare.m4 > constant/polyMesh/blockMeshDict
 #m4 -P constant/polyMesh/blockMeshDictConicalCylinderAndTrapezoidalSquare.m4 > constant/polyMesh/blockMeshDict
@@ -36,7 +37,7 @@ echo run blokMesh ...
 #m4 -P constant/polyMesh/blockMeshDictSemiAnnulus.m4 > constant/polyMesh/blockMeshDict
 #m4 -P constant/polyMesh/blockMeshDictSemiCylinder.m4 > constant/polyMesh/blockMeshDict
 #m4 -P constant/polyMesh/blockMeshDictTrapezoid.m4 > constant/polyMesh/blockMeshDict
-m4 -P constant/polyMesh/blockMeshDictTrapezoidSymmetry.m4 > constant/polyMesh/blockMeshDict
+#m4 -P constant/polyMesh/blockMeshDictTrapezoidSymmetry.m4 > constant/polyMesh/blockMeshDict
 
 
 blockMesh

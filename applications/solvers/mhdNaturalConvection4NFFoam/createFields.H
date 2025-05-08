@@ -332,6 +332,21 @@
         "zeroGradient"
     );
 
+    volScalarField hsPM
+    (
+        IOobject
+        (
+            "hsPM",
+            runTime.timeName(),
+            mesh,
+            IOobject::NO_READ,
+            IOobject::NO_WRITE
+        ),
+        mesh,
+        dimensionedScalar("hsPM", dimensionSet(1, -1, -3, 0, 0, 0, 0), SMALL),
+        "zeroGradient"
+    );
+
     forAll( pZones, zoneI )
     {
         const label & zoneId( pZones[zoneI].zoneId() );
@@ -342,6 +357,7 @@
         dimensionedScalar zoneRho(thermalPropertiesPM.lookup("rho"));
         dimensionedScalar zoneCp(thermalPropertiesPM.lookup("Cp"));
         dimensionedScalar zoneKappa(thermalPropertiesPM.lookup("kappa"));
+        dimensionedScalar zoneHs(thermalPropertiesPM.lookup("hs"));
 
         forAll( cells, cellI )
         {
@@ -349,8 +365,14 @@
             rhoPM[cells[cellI]] = zoneRho.value();
             CpPM[cells[cellI]] = zoneCp.value();
             kappaPM[cells[cellI]] = zoneKappa.value();
+            hsPM[cells[cellI]] = zoneHs.value();
         }
     }
+
+    rhoPM.correctBoundaryConditions();
+    CpPM.correctBoundaryConditions();
+    kappaPM.correctBoundaryConditions();
+    hsPM.correctBoundaryConditions();
 
 //------------------- NF4Foam -> Effective thermal properties ------------------//
     Info<< "Constructing field rhoEff\n" << endl;
@@ -365,7 +387,8 @@
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimensionedScalar("rhoEff", dimDensity, SMALL)
+        dimensionedScalar("rhoEff", dimDensity, SMALL),
+        "zeroGradient"
     );
 
     Info<< "Constructing field CpEff\n" << endl;
@@ -380,7 +403,8 @@
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimensionedScalar("CpEff", dimSpecificHeatCapacity, SMALL)
+        dimensionedScalar("CpEff", dimSpecificHeatCapacity, SMALL),
+        "zeroGradient"
     );
 
     Info<< "Constructing field kappaEff\n" << endl;
@@ -395,7 +419,8 @@
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimensionedScalar("kappaEff", dimThermalConductivity, SMALL)
+        dimensionedScalar("kappaEff", dimThermalConductivity, SMALL),
+        "zeroGradient"
     );
 
 //------------------- NF4Foam -> Radiation ------------------//

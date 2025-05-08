@@ -18,4 +18,4 @@
     kappat.correctBoundaryConditions();
 
     kappaEff = porosity*(kappat + kappa) + (1-porosity)*kappaPM;
-
+    kappaEff.correctBoundaryConditions();
