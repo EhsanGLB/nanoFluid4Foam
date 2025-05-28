@@ -189,7 +189,7 @@
                     ("molten1_"+particlesComponents1[i][0]),
                     runTime.timeName(),
                     mesh,
-                    IOobject::MUST_READ,
+                    IOobject::NO_READ,
                     IOobject::AUTO_WRITE
                 ),
                 particlesProperties1[i].molten()

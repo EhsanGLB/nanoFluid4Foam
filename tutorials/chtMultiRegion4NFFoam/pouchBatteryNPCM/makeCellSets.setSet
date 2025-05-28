@@ -1,0 +1,4 @@
+cellSet LIB new boxToCell (-0.08 -0.1 -0.005) (0.08 0.1 0.005)
+cellSet PCM clear
+cellSet PCM add cellToCell LIB
+cellSet PCM invert
